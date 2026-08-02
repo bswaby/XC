@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saturday Light Fever — School Guide &amp; MC Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=Martian+Mono:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0A0F24;
+    --deeper:#05081A;
+    --lane:#141C3C;
+    --lane-2:#1B2450;
+    --lamp:#FFC24A;      /* sodium stadium light */
+    --glow:#48E0D2;      /* glowstick */
+    --heat:#FF5C8A;      /* disco */
+    --paper:#ECE9F7;
+    --muted:#8E96BE;
+    --rule:rgba(236,233,247,.13);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--night);color:var(--paper);
+    font-family:"Instrument Sans",system-ui,sans-serif;
+    font-size:16px;line-height:1.55;
+    background-image:
+      radial-gradient(900px 420px at 12% -6%, rgba(255,194,74,.16), transparent 60%),
+      radial-gradient(760px 400px at 92% 4%, rgba(72,224,210,.13), transparent 62%);
+    background-repeat:no-repeat;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+  /* ---- marquee bulb rule: the signature device ---- */
+  .bulbs{
+    height:14px;margin:0;border:0;
+    background-image:radial-gradient(circle at 7px 7px, var(--lamp) 0 2.6px, rgba(255,194,74,.22) 2.6px 4.2px, transparent 4.4px);
+    background-size:22px 14px;
+    opacity:.9;
+  }
+  .bulbs.dim{background-image:radial-gradient(circle at 7px 7px, rgba(236,233,247,.34) 0 2.2px, transparent 2.4px)}
+
+  /* ---- hero ---- */
+  header.hero{padding:34px 0 30px;position:relative}
+  .eyebrow{
+    font-family:"Martian Mono",monospace;font-size:11px;font-weight:500;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--glow);margin:0 0 14px;
+  }
+  h1{
+    font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 118,"wght" 800;
+    font-size:clamp(2.5rem,8.6vw,5.6rem);line-height:.92;letter-spacing:-.02em;
+    margin:0 0 6px;text-transform:uppercase;
+  }
+  h1 .lit{color:var(--lamp);text-shadow:0 0 32px rgba(255,194,74,.42)}
+  .subline{
+    font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 96,"wght" 500;
+    font-size:clamp(.95rem,2.4vw,1.15rem);color:var(--muted);margin:0 0 26px;
+    text-transform:uppercase;letter-spacing:.06em;
+  }
+  .nights{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 28px}
+  .night-chip{
+    border:1px solid var(--rule);border-radius:2px;padding:9px 14px;background:rgba(20,28,60,.6);
+    font-family:"Martian Mono",monospace;font-size:11.5px;letter-spacing:.06em;
+  }
+  .night-chip b{color:var(--lamp);font-weight:700}
+  .night-chip.ms b{color:var(--heat)}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .stat{background:var(--deeper);padding:18px 16px}
+  .stat .n{
+    font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 112,"wght" 800;
+    font-size:2.15rem;line-height:1;display:block;
+  }
+  .stat .l{font-family:"Martian Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-top:8px}
+
+  /* ---- sections ---- */
+  section{padding:52px 0 8px}
+  h2{
+    font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 112,"wght" 800;
+    font-size:clamp(1.5rem,4.4vw,2.15rem);text-transform:uppercase;letter-spacing:-.01em;
+    margin:16px 0 6px;
+  }
+  .sec-note{color:var(--muted);margin:0 0 24px;max-width:62ch}
+
+  /* ---- travel board ---- */
+  .board{display:grid;gap:10px}
+  .row{
+    display:grid;grid-template-columns:minmax(0,1fr) 74px;align-items:center;gap:14px;
+    padding:11px 14px;background:var(--lane);border-left:3px solid var(--lamp);position:relative;overflow:hidden;
+  }
+  .row.ms{border-left-color:var(--heat)}
+  .row .bar{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,194,74,.20),rgba(255,194,74,0));width:var(--w);pointer-events:none}
+  .row.ms .bar{background:linear-gradient(90deg,rgba(255,92,138,.22),rgba(255,92,138,0))}
+  .row .who{position:relative;min-width:0}
+  .row .who b{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 104,"wght" 700;display:block;font-size:1rem}
+  .row .who span{color:var(--muted);font-size:12.5px}
+  .row .mi{position:relative;font-family:"Martian Mono",monospace;font-size:13px;font-weight:700;text-align:right;color:var(--lamp)}
+  .row.ms .mi{color:var(--heat)}
+
+  /* ---- award cards ---- */
+  .awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:14px}
+  .award{border:1px solid var(--rule);background:var(--deeper);padding:18px}
+  .award .tag{font-family:"Martian Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--glow);margin:0 0 10px}
+  .award h3{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 106,"wght" 750;font-size:1.06rem;margin:0 0 7px;line-height:1.2}
+  .award p{margin:0;font-size:14px;color:var(--muted)}
+
+  .count{font-family:"Martian Mono",monospace;font-size:11px;color:var(--muted);white-space:nowrap}
+
+  /* ---- primary section tabs ---- */
+  .tabbar{position:sticky;top:0;z-index:30;background:rgba(5,8,26,.95);backdrop-filter:blur(10px);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:8px}
+  .tabbar-in{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+  .tabbar-in::-webkit-scrollbar{display:none}
+  .ptab{
+    appearance:none;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);cursor:pointer;
+    font-family:"Martian Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    padding:15px 16px;white-space:nowrap;
+  }
+  .ptab[aria-selected="true"]{color:var(--paper);border-bottom-color:var(--lamp)}
+  .ptab.msx[aria-selected="true"]{border-bottom-color:var(--heat)}
+  .ptab:focus-visible{outline:2px solid var(--glow);outline-offset:-3px}
+  .panel{padding-top:34px}
+  .panel[hidden]{display:none}
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 20px}
+  .toolbar .q{
+    flex:1;min-width:190px;background:var(--lane);border:1px solid var(--rule);color:var(--paper);
+    padding:10px 13px;font-family:"Instrument Sans",sans-serif;font-size:14.5px;border-radius:0;
+  }
+  .toolbar .q::placeholder{color:var(--muted)}
+  .toolbar .q:focus{outline:2px solid var(--glow);outline-offset:1px}
+
+  /* ---- school cards ---- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .card{background:var(--lane);border:1px solid var(--rule);padding:0;display:flex;flex-direction:column}
+  .card .stripe{height:5px;display:flex}
+  .card .stripe i{flex:1}
+  .card .body{padding:16px 17px 18px}
+  .card h3{
+    font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 104,"wght" 750;
+    font-size:1.1rem;line-height:1.18;margin:0 0 3px;
+  }
+  .card .meta{font-family:"Martian Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+  .mascot{
+    display:inline-block;font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 100,"wght" 700;
+    font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;
+    background:rgba(255,194,74,.14);color:var(--lamp);padding:3px 9px;margin:0 0 12px;
+  }
+  .ms-set .mascot{background:rgba(255,92,138,.14);color:var(--heat)}
+  .facts{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+  .facts li{font-size:14px;padding-left:15px;position:relative;color:#D5D2E6}
+  .facts li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;background:var(--glow);border-radius:50%}
+  .dist{
+    margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);
+    font-family:"Martian Mono",monospace;font-size:11px;color:var(--muted);
+    display:flex;justify-content:space-between;gap:10px;
+  }
+  .dist b{color:var(--paper);font-weight:700}
+  .empty{color:var(--muted);padding:30px 0;font-family:"Martian Mono",monospace;font-size:13px}
+
+  /* ---- MC lines ---- */
+  .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .lines div{border-left:2px solid var(--glow);padding:4px 0 4px 15px}
+  .lines p{margin:0 0 4px}
+  .lines small{font-family:"Martian Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+  footer{padding:44px 0 60px;color:var(--muted);font-size:13px}
+  a{color:var(--glow)}
+
+  @media (max-width:520px){
+    .row{grid-template-columns:minmax(0,1fr) 62px;gap:8px;padding:10px 11px}
+    .stat{padding:14px 13px}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .card,.award{transition:transform .18s ease,border-color .18s ease}
+    .card:hover,.award:hover{transform:translateY(-2px);border-color:rgba(255,194,74,.4)}
+  }
+  @media print{
+    body{background:#fff;color:#111;background-image:none}
+    .controls,.bulbs,footer,.tabbar,.toolbar{display:none}
+    .panel[hidden]{display:block!important}
+    .panel{padding-top:20px;break-before:page}
+    .card,.award,.row,.stat{background:#fff;border:1px solid #bbb;color:#111;break-inside:avoid}
+    .facts li{color:#222}.card .meta,.stat .l,.row .who span{color:#555}
+    h1 .lit,.mascot,.row .mi{color:#111}
+    .grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<hr class="bulbs">
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Sanders Ferry Park · Hendersonville, Tennessee</p>
+    <h1>Saturday <span class="lit">Light</span> Fever</h1>
+    <p class="subline">School guide &amp; MC sheet · 2026 cross country night races</p>
+    <div class="nights">
+      <span class="night-chip ms"><b>Friday night</b> — Middle School · 19 teams</span>
+      <span class="night-chip"><b>Saturday night</b> — High School · 42 teams</span>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+</div>
+
+<div class="tabbar">
+  <div class="wrap tabbar-in" role="tablist" aria-label="Sections">
+    <button class="ptab" role="tab" data-panel="p-travel" aria-selected="true" aria-controls="p-travel">Travel board</button>
+    <button class="ptab" role="tab" data-panel="p-awards" aria-selected="false" aria-controls="p-awards">Worth calling out</button>
+    <button class="ptab" role="tab" data-panel="p-hs" aria-selected="false" aria-controls="p-hs">High school · 42</button>
+    <button class="ptab msx" role="tab" data-panel="p-ms" aria-selected="false" aria-controls="p-ms">Middle school · 19</button>
+    <button class="ptab" role="tab" data-panel="p-mic" aria-selected="false" aria-controls="p-mic">Lines for the mic</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="panel" id="p-travel" role="tabpanel" aria-labelledby="tab-travel">
+    <h2>The travel board</h2>
+    <p class="sec-note">Every team ranked by one-way driving distance to Sanders Ferry Park. Mileage is approximate — town center to the park.</p>
+    <div class="board" id="board"></div>
+  </section>
+
+  <section class="panel" id="p-awards" role="tabpanel" hidden>
+    <h2>Worth calling out</h2>
+    <p class="sec-note">Ready-made moments for the microphone.</p>
+    <div class="awards" id="awardgrid"></div>
+  </section>
+
+  <section class="panel" id="p-hs" role="tabpanel" hidden>
+    <h2>High school · Saturday night</h2>
+    <p class="sec-note">42 teams. Search by school, town, or mascot.</p>
+    <div class="toolbar">
+      <input class="q" data-grid="grid-hs" type="search" placeholder="Search 42 high schools…" aria-label="Search high schools">
+      <span class="count" id="count-hs"></span>
+    </div>
+    <div class="grid" id="grid-hs"></div>
+  </section>
+
+  <section class="panel ms-set" id="p-ms" role="tabpanel" hidden>
+    <h2>Middle school · Friday night</h2>
+    <p class="sec-note">19 teams. Search by school, town, or mascot.</p>
+    <div class="toolbar">
+      <input class="q" data-grid="grid-ms" type="search" placeholder="Search 19 middle schools…" aria-label="Search middle schools">
+      <span class="count" id="count-ms"></span>
+    </div>
+    <div class="grid" id="grid-ms"></div>
+  </section>
+
+  <section class="panel" id="p-mic" role="tabpanel" hidden>
+    <h2>Lines for the mic</h2>
+    <p class="sec-note">Lean on the theme without wearing it out. Pick three or four for the night.</p>
+    <div class="lines">
+      <div><small>Opening</small><p>“Sanders Ferry Park, Saturday night, and the only fever anybody caught tonight is 5K fever.”</p></div>
+      <div><small>Start line</small><p>“Runners set — and when this gun goes off, we’re going to find out who’s stayin’ alive.”</p></div>
+      <div><small>Far travelers</small><p>“Give it up for Towering Oaks Christian — they left Greeneville this morning, changed time zones, and drove 252 miles to race in the dark.”</p></div>
+      <div><small>Home crowd</small><p>“Hawkins Middle came about three miles. Some of you walked farther from the parking lot.”</p></div>
+      <div><small>Last mile</small><p>“Last 800 — this is where the disco ball stops spinning and the legs start talking.”</p></div>
+      <div><small>Awards</small><p>“Two nights, sixty-one teams, from Memphis to Greeneville. Nobody drove all that way to jog it in.”</p></div>
+    </div>
+  </section>
+</div>
+
+<hr class="bulbs" style="margin-top:44px">
+<div class="wrap"><footer>
+  Built from the Saturday Light Fever team registration files. Distances are approximate driving miles from Sanders Ferry Park, 513 Sanders Ferry Rd, Hendersonville, TN. Mascots and colors from TSSAA/TMSAA school listings. Add the exact race dates in the “Friday night / Saturday night” chips near the top before you share.
+</footer></div>
+
+<script>
+/* ------------------------------------------------------------------ *
+ * DATA — edit here. c = school colors (hex, for the top stripe),
+ * mi = approx one-way driving miles from Sanders Ferry Park.
+ * ------------------------------------------------------------------ */
+const HS = [
+ {n:"Battle Ground Academy",t:"Franklin",m:"Wildcats",c:["#1D4ED8","#F5C518","#FFFFFF"],mi:35,f:["Founded in 1889 on ground tied to the Battle of Franklin — one of the oldest schools in the field.","Their signature tradition is “The Tug,” a school-wide tug-of-war across the Harpeth River that dates to 1935."]},
+ {n:"Beech Senior High School",t:"Hendersonville",m:"Buccaneers",c:["#12294F","#E8792A"],mi:5,f:["Home-court hosts of the neighborhood — the campus sits in the Shackle Island community.","Beech and T.W. Hunter both fly the Buccaneer flag, so there’s a pirate ship at this meet both nights.","Second team in the door this year: registered May 7 at 10:06 a.m."]},
+ {n:"Brentwood High School",t:"Brentwood",m:"Bruins",c:["#123A8C","#E3B23C"],mi:28,f:["Opened in 1982 to take pressure off Franklin High; now around 1,650 students.","Consistently one of the top-ranked public high schools in Tennessee."]},
+ {n:"Central Magnet High School",t:"Murfreesboro",m:"Tigers",c:["#E8720C","#000000"],mi:42,f:["Application-only magnet school — students test in from across Rutherford County.","Rolled in with 11 coaches on the roster, one of the deepest staffs entered."]},
+ {n:"Clarksville High School",t:"Clarksville",m:"Wildcats",c:["#5B2D8E","#F5C518"],mi:55,f:["One of Clarksville’s oldest schools, with a deep distance-running tradition.","Registered two minutes after crosstown Rossview — a Clarksville double-header."]},
+ {n:"Clay County High School",t:"Celina",m:"Bulldogs",c:["#000000","#C6A664","#5B2D8E"],mi:85,f:["Coming down from Dale Hollow Lake country on the Kentucky line.","One of the smallest schools in the field, and one of the furthest from an interstate."]},
+ {n:"Cookeville High School",t:"Cookeville",m:"Cavaliers",c:["#B22234","#FFFFFF"],mi:82,f:["The Upper Cumberland’s flagship program, and Tennessee Tech’s hometown school.","Long history of putting runners on the podium at the state meet."]},
+ {n:"Creek Wood High School",t:"Charlotte",m:"Red Hawks",c:["#B01B22","#111111"],mi:52,f:["Dickson County school in Charlotte — one of Tennessee’s oldest county seats.","Opened in 2008, so this program is still writing its own record book."]},
+ {n:"Donelson Christian Academy",t:"Nashville",m:"Wildcats",c:["#0F2E5E","#C8102E"],mi:15,f:["One of the shorter drives on the high school side — straight down Old Hickory Boulevard.","Small-school program that regularly punches above its enrollment in distance events."]},
+ {n:"Ensworth",t:"Nashville",m:"Tigers",c:["#8B1A2B","#B7B7B7"],mi:30,f:["Two campuses, including the Devon Farm high school campus along the Harpeth River.","Trains on rolling private-school terrain — this flat park course plays to their speed."]},
+ {n:"Fairview High School",t:"Fairview",m:"Yellow Jackets",c:["#F2C300","#000000"],mi:45,f:["Their backyard is Bowie Nature Park — 700-plus acres of trails. These kids train on real dirt.","Williamson County’s westernmost high school."]},
+ {n:"Father Ryan High School",t:"Nashville",m:"Fighting Irish",c:["#046A38","#F5C518"],mi:23,f:["Nashville’s oldest Catholic high school, founded in 1925.","One of two Fighting Irish squads racing this weekend — Houston County is the other."]},
+ {n:"Franklin High School",t:"Franklin",m:"Admirals",c:["#6B1F2B","#FFFFFF"],mi:37,f:["Founded in 1910; became the Admirals in 2020 after a school-wide mascot change.","Tied for the very first registration of the entire weekend — May 6 at 1:10 p.m."]},
+ {n:"Franklin Road Academy",t:"Nashville",m:"Panthers",c:["#0B2E5C","#C0C0C0"],mi:26,f:["Brought 11 coaches — one of the largest staffs on the Nashville side.","Compact campus off Franklin Road with a long-running cross country program."]},
+ {n:"Goodpasture Christian School",t:"Madison",m:"Cougars",c:["#7B1E3A","#C0C0C0"],mi:10,f:["The closest school to the park that isn’t in Sumner County — about a ten-minute drive.","Madison neighbors: they could practically hear the starting gun from campus."]},
+ {n:"Hardin Valley Academy",t:"Knoxville",m:"Hawks",c:["#0B2E5C","#7BAFD4"],mi:165,f:["One of three East Tennessee programs making the haul across the plateau.","Knoxville’s west-side powerhouse — opened 2008 and grew fast."]},
+ {n:"Harpeth Hall School",t:"Nashville",m:"Honeybears",c:["#0F3D2E","#F2C300"],mi:25,f:["Best mascot name in the meet, and it isn’t close: the Honeybears.","All-girls school — they’re entered in the girls’ race only.","Alumnae include Reese Witherspoon and Amy Grant."]},
+ {n:"Houston County High School",t:"Erin",m:"Fighting Irish",c:["#009A44","#FFFFFF"],mi:75,f:["Erin is Tennessee’s Irish town — home of the Wearin’ of the Green festival every March.","Leanest travel party in the meet: two coaches listed.","Both the high school and middle school are entered, so Erin is here both nights."]},
+ {n:"Houston High School",t:"Germantown",m:"Mustangs",c:["#C8102E","#000000","#C0C0C0"],mi:212,f:["Memphis-area program making a 200-plus-mile trip to race at night.","Longtime rival of Collierville — whose two middle schools are also on the entry list."]},
+ {n:"Hume-Fogg Academic Magnet",t:"Nashville",m:"Blue Knights",c:["#1E3A8A","#C0C0C0"],mi:20,f:["Races out of a 1912 Gothic Revival building on Broadway in downtown Nashville.","Academic magnet — admission is by test score, and they still field a full XC squad."]},
+ {n:"Karns High School",t:"Knoxville",m:"Beavers",c:["#046A38","#FFFFFF"],mi:168,f:["Sixteen coaches on the roster — the biggest coaching contingent in the entire meet.","Knoxville’s northwest side, and one of the longer East Tennessee drives."]},
+ {n:"Lebanon High School",t:"Lebanon",m:"Blue Devils",c:["#00539B","#FFFFFF"],mi:25,f:["Wilson County’s original high school, straight up I-40 from the park.","Lebanon and Wilson Central both entered — a county rivalry inside the race."]},
+ {n:"Liberty Creek High School",t:"Gallatin",m:"Wolves",c:["#0B2E5C","#C8102E","#7BAFD4"],mi:14,f:["Opened in 2022 — the newest program in Sumner County.","Their campus address is literally 100 Wolfpack Way.","Liberty Creek runs both nights: the middle school Wolves are entered Friday."]},
+ {n:"Lipscomb Academy",t:"Nashville",m:"Mustangs",c:["#4B2E83","#F2C300"],mi:23,f:["Shares a campus footprint with Lipscomb University in Green Hills.","One of two Mustang herds on the high school side alongside Houston."]},
+ {n:"Marshall County High School",t:"Lewisburg",m:"Tigers",c:["#1E3A8A","#FFFFFF"],mi:72,f:["Lewisburg calls itself the Tennessee Walking Horse capital — this is horse country.","Single coach listed on the entry, and a 70-plus-mile drive each way."]},
+ {n:"Maryville High School",t:"Maryville",m:"Rebels",c:["#B01B22","#FFFFFF"],mi:195,f:["Foothills of the Smokies — one of the most decorated athletic programs in the state.","Nearly 200 miles one way, and the second-longest trip on the high school side."]},
+ {n:"Memphis University School",t:"Memphis",m:"Owls",c:["#0B2E5C","#B01B22"],mi:208,f:["The only school entered in BOTH races — the Owls run Friday night and Saturday night.","All-boys school, so they’re in the boys’ races only, both nights.","Founded 1893, and one of the oldest independent schools in Tennessee."]},
+ {n:"Merrol Hyde Magnet",t:"Hendersonville",m:"Hawks",c:["#1E3A8A","#F2C300"],mi:4,f:["K-12 magnet school right here in Hendersonville — school motto is Mandatus ad virtutem.","Twelve coaches listed, which is remarkable for a school this size.","High school and middle school both entered — Hawks fly both nights."]},
+ {n:"Montgomery Central High School",t:"Cunningham",m:"Indians",c:["#B01B22","#FFFFFF","#1E3A8A"],mi:62,f:["Rural Montgomery County school out in Cunningham, west of Clarksville.","One of the last two entries to come in — registered July 27."]},
+ {n:"Mt. Juliet High School",t:"Mt. Juliet",m:"Golden Bears",c:["#000000","#F2C300"],mi:15,f:["Eleven coaches making the short hop around Old Hickory Lake.","Mt. Juliet Middle is entered Friday, so the Bears are here both nights."]},
+ {n:"Nolensville High School",t:"Nolensville",m:"Knights",c:["#4B2E83","#C0C0C0"],mi:32,f:["Opened in 2016 and grew into a full varsity program almost immediately.","One of two Knights squads racing — Pope John Paul II is the other."]},
+ {n:"Pope Saint John Paul II Preparatory School",t:"Hendersonville",m:"Knights",c:["#0B2E5C","#F2C300"],mi:6,f:["Hendersonville’s Catholic prep school, minutes from the start line.","Nine coaches for a short drive — expect a loud sideline."]},
+ {n:"Portland High School",t:"Portland",m:"Panthers",c:["#4B2E83","#F2C300"],mi:23,f:["Portland is the Strawberry Capital of Tennessee — the festival draws thousands every May.","Sumner County neighbors making the run down from the Kentucky line."]},
+ {n:"Ravenwood High School",t:"Brentwood",m:"Raptors",c:["#C8102E","#000000","#C6A664"],mi:29,f:["The Raptor is a red-tailed hawk — one of three birds of prey in this field.","Opened in 2002 and now near 2,000 students."]},
+ {n:"Rockvale High School",t:"Rockvale",m:"Rockets",c:["#0B2E5C","#C0C0C0"],mi:50,f:["Newest high school here — opened in 2019 in Rutherford County.","Rockets on a night course: the theme writes itself."]},
+ {n:"Rossview High School",t:"Clarksville",m:"Hawks",c:["#0B2E5C","#C6A664"],mi:57,f:["Thirteen coaches listed — second-biggest staff in the meet.","Registered within two minutes of Clarksville High on the same June evening."]},
+ {n:"St. Cecilia Academy",t:"Nashville",m:"Scarabs",c:["#C8102E","#FFFFFF"],mi:25,f:["The Scarab may be the most unusual mascot in Tennessee high school sports.","Founded in 1860 by the Dominican Sisters — one of the oldest schools in the state.","All-girls school, entered in the girls’ race only."]},
+ {n:"Station Camp High School",t:"Gallatin",m:"Bison",c:["#6B1F2B","#9AA0A6"],mi:13,f:["Named for the historic Station Camp Creek hunting camp — real frontier Tennessee.","Station Camp Middle races Friday, so the Bison herd shows up both nights."]},
+ {n:"Towering Oaks Christian School",t:"Greeneville",m:"Warriors",c:["#046A38","#FFFFFF"],mi:252,f:["Furthest traveler of the entire weekend: about 252 miles and four hours each way.","They leave Eastern time and arrive in Central — this team literally crosses a time zone to race.","Small Baptist school of roughly 180 students, PK-12, with a recently added high school."]},
+ {n:"University School of Nashville",t:"Nashville",m:"Tigers",c:["#C8102E","#000000"],mi:22,f:["Independent K-12 in Hillsboro Village, next door to Vanderbilt.","One of two Tiger programs on the high school side."]},
+ {n:"White House High School",t:"White House",m:"Blue Devils",c:["#00539B","#FFFFFF"],mi:17,f:["Robertson-Sumner county line school, a straight shot up Highway 258.","One coach listed on the entry — the leanest staff of any local team."]},
+ {n:"Wilson Central High School",t:"Lebanon",m:"Wildcats",c:["#0B2E5C","#C6A664"],mi:25,f:["One of three Wildcat programs racing Saturday night.","Wilson County’s newer of the two Lebanon high schools."]}
+];
+
+const MS = [
+ {n:"Brentwood Middle School",t:"Brentwood",m:"Vikings",c:["#123A8C","#E3B23C"],mi:28,f:["Feeds the Brentwood High Bruins, who race the following night.","Six coaches making the trip up from Williamson County."]},
+ {n:"Collierville Middle School",t:"Collierville",m:"Dragons",c:["#6B1F2B","#000000"],mi:218,f:["Ties for the longest middle school trip: about 218 miles from Memphis’s eastern edge.","Registered the same minute as crosstown West Collierville — they came as a pair."]},
+ {n:"Gladeville Middle School",t:"Mount Juliet",m:"Wildcats",c:["#0FA3A3","#F2C300"],mi:18,f:["Turquoise and gold is one of the more distinctive color combinations in the field.","Ten coaches on the entry — one of the deepest middle school staffs."]},
+ {n:"Hawkins Middle School",t:"Hendersonville",m:"Commandos",c:["#000000","#C6A664"],mi:3,f:["Closest team in the entire weekend — about three miles from the start line.","Entered in the boys’ race only this year.","Feeds Hendersonville High, so the Commando name carries all the way up."]},
+ {n:"Houston County Middle School",t:"Erin",m:"Fighting Irish",c:["#009A44","#FFFFFF"],mi:75,f:["Erin’s Irish identity runs through the middle school and the high school alike.","Two coaches, 75 miles, both nights of racing — Houston County is all in."]},
+ {n:"Houston Middle School",t:"Germantown",m:"Mustangs",c:["#C8102E","#000000","#C0C0C0"],mi:212,f:["Germantown program making a 200-plus-mile Friday night drive.","Feeds Houston High, which races Saturday night — a full Mustang weekend."]},
+ {n:"Legacy Middle School",t:"Franklin",m:"Lions",c:["#1E3A8A","#F2C300"],mi:35,f:["One of Williamson County’s newer middle schools.","Third team to register for the weekend — May 7 at 10:17 a.m."]},
+ {n:"Liberty Creek Middle School",t:"Gallatin",m:"Wolves",c:["#0B2E5C","#C8102E","#7BAFD4"],mi:14,f:["Part of the Liberty Creek cluster that opened at the start of this decade.","The high school Wolves race Saturday — same pack, two nights."]},
+ {n:"Memphis University School",t:"Memphis",m:"Owls",c:["#0B2E5C","#B01B22"],mi:208,f:["The only school on the entry list for both races — Owls run Friday and Saturday.","All-boys school, entered in the boys’ races.","Longest middle school haul on the board at roughly 208 miles."]},
+ {n:"Merrol Hyde Middle School",t:"Hendersonville",m:"Hawks",c:["#1E3A8A","#F2C300"],mi:4,f:["Hendersonville’s K-12 magnet — the same Hawks race both nights.","Second-closest team in the meet, about four miles out."]},
+ {n:"Mill Creek Middle School",t:"Nolensville",m:"Mavericks",c:["#0B2E5C","#C0C0C0"],mi:32,f:["One of only two Maverick programs anywhere in Middle Tennessee middle school sports.","Nolensville’s growth school — enrollment has climbed every year since it opened."]},
+ {n:"Mt. Juliet Middle School",t:"Mt. Juliet",m:"Bears",c:["#000000","#F2C300"],mi:15,f:["Black and gold Bears feeding both Mt. Juliet High and Green Hill.","Mt. Juliet High races Saturday, so Wilson County is represented both nights."]},
+ {n:"Spring Station Middle School",t:"Spring Hill",m:"Mustangs",c:["#4B2E83","#C0C0C0","#000000"],mi:52,f:["Longest Middle Tennessee drive on the Friday card at roughly 52 miles.","Purple, silver and black — one of the sharpest uniform palettes in the meet."]},
+ {n:"St. Matthew Catholic School",t:"Franklin",m:"Catholic K-8",c:["#7B1E3A","#F2C300"],mi:35,f:["First team to register for the entire weekend — May 6 at 1:04 p.m. They wanted in.","2017 National Blue Ribbon School, and an Apple Distinguished School twice over.","Roughly 485 students, PK through 8th grade."]},
+ {n:"Station Camp Middle School",t:"Gallatin",m:"Bison",c:["#6B1F2B","#9AA0A6"],mi:13,f:["Twelve coaches — the largest middle school staff on the entry list.","The Station Camp High Bison race Saturday night; the herd is here all weekend."]},
+ {n:"Sunset Middle School",t:"Brentwood",m:"Sabers",c:["#123A8C","#C0C0C0"],mi:28,f:["Feeds Ravenwood High, who race Saturday night as the Raptors.","Sabers and Raptors — Brentwood does not do gentle mascots."]},
+ {n:"T.W. Hunter Middle School",t:"Hendersonville",m:"Buccaneers",c:["#E8792A","#12294F"],mi:5,f:["Sumner County neighbors flying the same Buccaneer flag as Beech High.","Orange and navy on a night course shows up beautifully under the lights."]},
+ {n:"West Collierville Middle School",t:"Collierville",m:"Dragons",c:["#6B1F2B","#9AA0A6"],mi:218,f:["Ties Collierville Middle for the longest Friday night drive: about 218 miles.","Their building used to be Collierville High School — and long before that, a state correctional facility.","Opened as a middle school in 2018 and already one of the largest in West Tennessee."]},
+ {n:"Woodland Middle School",t:"Brentwood",m:"Warriors",c:["#C8102E","#000000","#FFFFFF"],mi:28,f:["Feeds Ravenwood High School alongside Sunset Middle.","Red, black and white — the third Brentwood-area team on the Friday card."]}
+];
+
+/* ------------------------------------------------------------------ */
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function card(s){
+  const stripe = s.c.map(h=>`<i style="background:${h}"></i>`).join('');
+  const facts = s.f.map(f=>`<li>${esc(f)}</li>`).join('');
+  return `<article class="card">
+    <div class="stripe">${stripe}</div>
+    <div class="body">
+      <h3>${esc(s.n)}</h3>
+      <p class="meta">${esc(s.t)}, TN</p>
+      <span class="mascot">${esc(s.m)}</span>
+      <ul class="facts">${facts}</ul>
+      <p class="dist"><span>From Sanders Ferry</span><b>~${s.mi} mi</b></p>
+    </div>
+  </article>`;
+}
+
+const SETS = {
+  'grid-hs': {list:HS, count:'count-hs'},
+  'grid-ms': {list:MS, count:'count-ms'}
+};
+
+function renderSet(gridId, term){
+  const {list, count} = SETS[gridId];
+  const q = (term||'').trim().toLowerCase();
+  const out = list.filter(s => !q || (s.n+' '+s.t+' '+s.m).toLowerCase().includes(q));
+  document.getElementById(gridId).innerHTML = out.length
+    ? out.map(card).join('')
+    : `<p class="empty">No school matches “${esc(term)}”. Try a town or a mascot.</p>`;
+  document.getElementById(count).textContent = out.length + ' of ' + list.length + ' shown';
+}
+
+document.querySelectorAll('.toolbar .q').forEach(input => {
+  input.addEventListener('input', () => renderSet(input.dataset.grid, input.value));
+});
+
+/* ---- section tabs ---- */
+const ptabs = Array.from(document.querySelectorAll('.ptab'));
+function showPanel(id){
+  ptabs.forEach(t => t.setAttribute('aria-selected', t.dataset.panel === id));
+  document.querySelectorAll('.panel').forEach(p => { p.hidden = (p.id !== id); });
+  const active = ptabs.find(t => t.dataset.panel === id);
+  if (active) active.scrollIntoView({block:'nearest', inline:'nearest'});
+  if (window.scrollY > document.querySelector('.tabbar').offsetTop) {
+    document.querySelector('.tabbar').scrollIntoView({block:'start'});
+  }
+}
+ptabs.forEach(t => t.addEventListener('click', () => showPanel(t.dataset.panel)));
+ptabs.forEach((t, i) => t.addEventListener('keydown', e => {
+  if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+  e.preventDefault();
+  const next = ptabs[(i + (e.key === 'ArrowRight' ? 1 : ptabs.length - 1)) % ptabs.length];
+  next.focus(); showPanel(next.dataset.panel);
+}));
+
+/* ---- travel board ---- */
+const all = HS.map(s=>({...s,lvl:'hs'})).concat(MS.map(s=>({...s,lvl:'ms'})))
+             .sort((a,b)=>b.mi-a.mi);
+const max = all[0].mi;
+document.getElementById('board').innerHTML = all.map(s=>
+  `<div class="row ${s.lvl==='ms'?'ms':''}" style="--w:${Math.max(6,(s.mi/max)*100)}%">
+     <span class="bar"></span>
+     <span class="who"><b>${esc(s.n)}</b><span>${esc(s.t)} · ${esc(s.m)} · ${s.lvl==='ms'?'Friday':'Saturday'}</span></span>
+     <span class="mi">${s.mi} mi</span>
+   </div>`).join('');
+
+/* ---- headline stats ---- */
+const towns = new Set(all.map(s=>s.t)).size;
+const roundTrip = all.reduce((t,s)=>t+s.mi*2,0);
+const coaches = 391;
+document.getElementById('stats').innerHTML = `
+  <div class="stat"><span class="n">61</span><span class="l">Team entries</span></div>
+  <div class="stat"><span class="n">${towns}</span><span class="l">Tennessee towns</span></div>
+  <div class="stat"><span class="n">252</span><span class="l">Miles, furthest team</span></div>
+  <div class="stat"><span class="n">${roundTrip.toLocaleString()}</span><span class="l">Round-trip miles driven</span></div>
+  <div class="stat"><span class="n">${coaches}</span><span class="l">Coaches on rosters</span></div>`;
+
+/* ---- awards ---- */
+const awards = [
+ ["Furthest traveled","Towering Oaks Christian School","Greeneville to Hendersonville is about 252 miles and four hours — and they cross from Eastern into Central time to get here."],
+ ["Furthest, Friday night","Collierville &amp; West Collierville Middle","Both Collierville schools drive roughly 218 miles from the Memphis suburbs, and both registered at the exact same minute."],
+ ["Shortest commute","Hawkins Middle School","About three miles. Some spectators will travel farther from the parking lot to the finish chute."],
+ ["First in the door","St. Matthew Catholic School","Registered May 6 at 1:04 p.m. — six minutes ahead of Franklin High, the first high school in."],
+ ["Deepest bench","Karns High School","Sixteen coaches listed, the largest staff of any team in either race."],
+ ["Doing it twice","Memphis University School","The only school entered in both races. Two nights, two starting lines, 208 miles from home."],
+ ["Mascot of the meet","Harpeth Hall Honeybears","Runner-up: the St. Cecilia Scarabs. Nowhere else on a Tennessee start line will you find that pair."],
+ ["Two teams, one flag","Beech &amp; T.W. Hunter","Both Sumner County schools run as Buccaneers — the same pirate ship, two different nights."]
+];
+document.getElementById('awardgrid').innerHTML = awards.map(([tag,h,p])=>
+  `<div class="award"><p class="tag">${tag}</p><h3>${h}</h3><p>${p}</p></div>`).join('');
+
+renderSet('grid-hs','');
+renderSet('grid-ms','');
+</script>
+</body>
+</html>
