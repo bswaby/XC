@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Results Archive — Saturday Light Fever</title>
+<meta name="description" content="Search every recorded result from Saturday Light Fever at Sanders Ferry Park, Hendersonville, Tennessee. Look up a runner or a school and see how times changed year to year.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#080D1C; --deep:#101833; --edge:#1E2A4C;
+  --lamp:#FFC24A; --lake:#3FA9A0; --paper:#E9EDF6; --dim:#8A96B4;
+  --disp:"Big Shoulders Display","Archivo Narrow","Arial Narrow",Impact,sans-serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--night);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px}
+a{color:var(--lamp)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--lamp);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+header{padding:44px 0 24px}
+.back{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+h1{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(40px,9vw,72px);line-height:.9;margin:16px 0 12px}
+.sub{color:#C7CFE2;max-width:44rem;margin:0 0 4px}
+.sub b{color:var(--paper)}
+
+.controls{position:sticky;top:0;z-index:5;background:var(--night);border-top:1px solid var(--edge);
+  border-bottom:1px solid var(--edge);padding:16px 0;margin:22px 0 0}
+.controls .row{display:flex;gap:10px;flex-wrap:wrap}
+input[type=search]{flex:1 1 260px;min-width:0;background:var(--deep);border:1px solid var(--edge);color:var(--paper);
+  font-family:var(--body);font-size:16px;padding:11px 14px;border-radius:2px}
+input[type=search]::placeholder{color:#66718F}
+select{background:var(--deep);border:1px solid var(--edge);color:var(--paper);font-family:var(--mono);
+  font-size:13px;padding:11px 10px;border-radius:2px}
+.count{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-top:11px}
+
+table{border-collapse:collapse;width:100%;font-size:15px;margin-top:6px}
+th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dim);text-align:left;padding:14px 12px 9px 0;border-bottom:1px solid var(--edge);white-space:nowrap}
+td{padding:10px 12px 10px 0;border-bottom:1px solid rgba(30,42,76,.5);vertical-align:top}
+td.n,th.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.t{font-family:var(--mono);color:var(--lamp);white-space:nowrap}
+tbody tr:hover{background:rgba(30,42,76,.34)}
+.nm{background:none;border:0;padding:0;color:var(--paper);font:inherit;text-align:left;cursor:pointer;
+  border-bottom:1px dotted #45527A}
+.nm:hover{color:var(--lamp);border-bottom-color:var(--lamp)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scroll table{min-width:600px}
+
+.empty{font-family:var(--mono);font-size:13px;color:var(--dim);padding:40px 0}
+#more{display:block;margin:22px auto 0;background:var(--deep);border:1px solid var(--edge);color:var(--paper);
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:12px 22px;cursor:pointer}
+#more:hover{border-color:var(--lamp);color:var(--lamp)}
+
+dialog{background:var(--night);border:1px solid var(--edge);color:var(--paper);max-width:640px;width:calc(100% - 36px);padding:0}
+dialog::backdrop{background:rgba(4,7,16,.82)}
+.card{padding:26px 26px 22px}
+.card h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:32px;line-height:1;margin:0 0 4px}
+.card .who{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:18px}
+.card table{margin:0}
+.delta{font-family:var(--mono);font-size:13px}
+.delta.up{color:var(--lake)}
+.delta.down{color:#C98A8A}
+.verdict{border-left:2px solid var(--lamp);padding:2px 0 2px 16px;margin:20px 0 0;font-size:15px;color:#C7CFE2}
+.close{position:absolute;top:14px;right:16px;background:none;border:0;color:var(--dim);font-size:26px;line-height:1;cursor:pointer}
+.close:hover{color:var(--lamp)}
+
+footer{border-top:1px solid var(--edge);margin-top:50px;padding:30px 0 60px;
+  font-family:var(--mono);font-size:12px;color:var(--dim);line-height:1.8}
+@media(max-width:560px){h1{font-size:40px} body{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a class="back" href="index.html">&larr; Saturday Light Fever</a>
+  <h1>Results archive</h1>
+  <p class="sub">Every recorded finish at Sanders Ferry Park. Search a runner or a school, then
+  click any name to see that runner&rsquo;s times across every year they raced here.</p>
+</header>
+
+<div class="controls">
+  <div class="row">
+    <input type="search" id="q" placeholder="Search a runner or a school&hellip;" autocomplete="off" aria-label="Search by runner or school">
+    <select id="yr" aria-label="Filter by year"><option value="">All years</option></select>
+    <select id="lv" aria-label="Filter by level">
+      <option value="">All levels</option><option value="5k">High school 5,000m</option><option value="2mi">Middle school 2 mile</option>
+    </select>
+    <select id="gd" aria-label="Filter by gender">
+      <option value="">Boys &amp; girls</option><option value="Boys">Boys</option><option value="Girls">Girls</option>
+    </select>
+  </div>
+  <div class="count" id="count">Loading&hellip;</div>
+</div>
+
+<div class="scroll">
+  <table>
+    <thead><tr><th class="n">Year</th><th>Runner</th><th>School</th><th class="n">Time</th><th class="n">Place</th><th>Race</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<div class="empty" id="empty" hidden>No results match that search.</div>
+<button id="more" hidden>Show more</button>
+
+<dialog id="card">
+  <button class="close" id="closeCard" aria-label="Close">&times;</button>
+  <div class="card" id="cardBody"></div>
+</dialog>
+
+<footer>
+  Compiled from the meet&rsquo;s own results archive. Times are as published by the meet.<br>
+  <span id="cover"></span><br>
+  <a href="index.html">Back to the report</a> &middot; <a href="data/results.json">Raw data (JSON)</a>
+</footer>
+
+</div>
+
+<script>
+const PAGE = 100;
+let ROWS = [], view = [], shown = 0, F = {};
+
+const $ = id => document.getElementById(id);
+const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const secs = t => { const m = /^(\d+):(\d+(?:\.\d+)?)$/.exec(t); return m ? +m[1]*60 + +m[2] : null; };
+const mmss = s => { const m = Math.floor(Math.abs(s)/60), x = (Math.abs(s)%60).toFixed(1).padStart(4,'0');
+                    return (s<0?'-':'') + m + ':' + x; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const raceName = r => (r.dist === '2mi' ? '2 mile' : '5,000m') + ' &middot; ' + r.tier + ' ' + r.gender;
+
+fetch('data/results.json')
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => {
+    ROWS = d.rows.map(a => ({ year:a[0], place:a[1], name:a[2], team:a[3], time:a[4],
+                              dist:a[5], gender:a[6], tier:a[7], grade:a[8],
+                              key:norm(a[2]), tkey:norm(a[3]), sec:secs(a[4]) }));
+    d.years.forEach(y => { const o = document.createElement('option'); o.value = o.textContent = y; $('yr').append(o); });
+    $('cover').textContent = 'Archive covers ' + d.years.join(', ') + ' \u2014 ' + ROWS.length.toLocaleString() + ' finishes.';
+    apply();
+  })
+  .catch(e => {
+    $('count').textContent = 'Could not load the results file.';
+    $('empty').hidden = false;
+    $('empty').textContent = 'This page reads data/results.json, which browsers block when a page is opened '
+      + 'directly from disk. View it over a web server (GitHub Pages works, or run "python3 -m http.server" '
+      + 'in this folder).';
+  });
+
+function apply(){
+  const q = norm($('q').value.trim());
+  F = { yr:$('yr').value, lv:$('lv').value, gd:$('gd').value };
+  const terms = q ? q.split(/\s+/) : [];
+  view = ROWS.filter(r => {
+    if (F.yr && r.year != F.yr) return false;
+    if (F.lv && r.dist !== F.lv) return false;
+    if (F.gd && r.gender !== F.gd) return false;
+    return terms.every(t => r.key.includes(t) || r.tkey.includes(t));
+  });
+  view.sort((a,b) => b.year - a.year || a.dist.localeCompare(b.dist) || a.place - b.place);
+  shown = 0;
+  $('rows').innerHTML = '';
+  $('count').textContent = view.length.toLocaleString() + (view.length === 1 ? ' finish' : ' finishes');
+  $('empty').hidden = view.length > 0;
+  draw();
+}
+
+function draw(){
+  const slice = view.slice(shown, shown + PAGE);
+  $('rows').insertAdjacentHTML('beforeend', slice.map(r =>
+    '<tr><td class="n">' + r.year + '</td>'
+    + '<td><button class="nm" data-k="' + esc(r.key) + '">' + esc(r.name) + '</button></td>'
+    + '<td>' + esc(r.team) + '</td>'
+    + '<td class="t">' + esc(r.time) + '</td>'
+    + '<td class="n">' + r.place + '</td>'
+    + '<td>' + raceName(r) + '</td></tr>').join(''));
+  shown += slice.length;
+  $('more').hidden = shown >= view.length;
+  $('more').textContent = 'Show more (' + (view.length - shown).toLocaleString() + ' left)';
+}
+
+$('more').onclick = draw;
+['q','yr','lv','gd'].forEach(id => $(id).addEventListener('input', apply));
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('.nm');
+  if (b) openCard(b.dataset.k);
+});
+$('closeCard').onclick = () => $('card').close();
+
+function openCard(key){
+  const runs = ROWS.filter(r => r.key === key).sort((a,b) => a.year - b.year);
+  if (!runs.length) return;
+  const name = runs[0].name;
+  const teams = [...new Set(runs.map(r => r.team))];
+
+  let html = '<h2>' + esc(name) + '</h2><p class="who">' + esc(teams.join(' \u00b7 ')) + '</p>';
+  html += '<table><thead><tr><th class="n">Year</th><th class="n">Time</th><th>Race</th>'
+        + '<th class="n">Place</th><th class="n">Change</th></tr></thead><tbody>';
+
+  const last = {};
+  runs.forEach(r => {
+    let d = '';
+    const prev = last[r.dist];
+    if (prev != null && r.sec != null) {
+      const gain = prev - r.sec;
+      d = '<span class="delta ' + (gain > 0 ? 'up' : 'down') + '">'
+        + (gain > 0 ? '\u2212' : '+') + mmss(Math.abs(gain)) + '</span>';
+    }
+    if (r.sec != null) last[r.dist] = r.sec;
+    html += '<tr><td class="n">' + r.year + '</td><td class="t">' + esc(r.time) + '</td>'
+          + '<td>' + raceName(r) + '</td><td class="n">' + r.place + '</td>'
+          + '<td class="n">' + d + '</td></tr>';
+  });
+  html += '</tbody></table>';
+
+  // best improvement at a single distance
+  let best = 0, bd = null;
+  ['5k','2mi'].forEach(dist => {
+    const rs = runs.filter(r => r.dist === dist && r.sec != null);
+    if (rs.length > 1) {
+      const g = rs[0].sec - Math.min(...rs.map(r => r.sec));
+      if (g > best) { best = g; bd = { dist, first:rs[0], years:[rs[0].year, rs[rs.length-1].year] }; }
+    }
+  });
+  if (best > 0) {
+    html += '<p class="verdict">Took <b>' + mmss(best) + '</b> off '
+          + (bd.dist === '2mi' ? 'the two mile' : 'the 5,000m')
+          + ' between ' + bd.years[0] + ' and ' + bd.years[1] + ' on this course.</p>';
+  } else if (runs.length > 1) {
+    html += '<p class="verdict">Has raced here ' + runs.length + ' times.</p>';
+  }
+
+  $('cardBody').innerHTML = html;
+  $('card').showModal();
+}
+</script>
+</body>
+</html>
